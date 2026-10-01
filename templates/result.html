@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>
+        Deepfake Forensic Report
+    </title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="report-container">
+
+
+<header class="header">
+
+    <div>
+
+        <p class="label">
+            DIGITAL MEDIA FORENSICS
+        </p>
+
+        <h1>
+            🔎 Deepfake Forensic Report
+        </h1>
+
+        <p class="subtitle">
+            AI-based Audio & Video Authenticity Analysis
+        </p>
+
+    </div>
+
+
+    <div class="badge">
+        ANALYSIS COMPLETE
+    </div>
+
+
+</header>
+
+
+
+
+<!-- FILE INFORMATION -->
+
+<div class="card">
+
+
+<h2>
+📁 File Evidence
+</h2>
+
+
+<div class="file-name">
+
+{{filename}}
+
+</div>
+
+
+
+<div class="grid">
+
+
+<div class="box">
+
+<small>
+Format
+</small>
+
+<strong>
+{{data.metadata.get('format','-')}}
+</strong>
+
+</div>
+
+
+
+<div class="box">
+
+<small>
+Size
+</small>
+
+<strong>
+{{data.metadata.get('file_size_mb','-')}} MB
+</strong>
+
+</div>
+
+
+
+<div class="box">
+
+<small>
+Codec
+</small>
+
+<strong>
+{{data.metadata.get('codec','-')}}
+</strong>
+
+</div>
+
+
+
+<div class="box">
+
+<small>
+Resolution
+</small>
+
+<strong>
+{{data.metadata.get('resolution','-')}}
+</strong>
+
+</div>
+
+
+
+<div class="box">
+
+<small>
+Duration
+</small>
+
+<strong>
+{{data.metadata.get('duration_seconds','-')}} sec
+</strong>
+
+</div>
+
+
+
+<div class="box">
+
+<small>
+Bitrate
+</small>
+
+<strong>
+{{data.metadata.get('bitrate_kbps','-')}} kbps
+</strong>
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<!-- AI RESULT -->
+
+<div class="card">
+
+
+<h2>
+🤖 Machine Learning Detection
+</h2>
+
+
+
+<div class="prediction">
+
+
+<p>
+Prediction
+</p>
+
+
+<h1>
+
+{{data.analysis.prediction}}
+
+</h1>
+
+
+</div>
+
+
+
+
+<div class="probability-container">
+
+
+<div class="probability">
+
+
+<h3>
+REAL
+</h3>
+
+
+<h2>
+{{data.analysis.real_probability}}%
+</h2>
+
+
+
+<div class="bar">
+
+<div class="real-bar"
+style="--value: {{data.analysis.real_probability}}%;">
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="probability">
+
+
+<h3>
+DEEPFAKE
+</h3>
+
+
+<h2>
+{{data.analysis.fake_probability}}%
+</h2>
+
+
+<div class="bar">
+
+
+<div class="fake-bar"
+style="--value: {{data.analysis.fake_probability}}%;">
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<p class="confidence">
+
+Model Confidence :
+
+<strong>
+
+{{data.analysis.confidence}}%
+
+</strong>
+
+
+</p>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- TECHNICAL -->
+
+
+<div class="card">
+
+
+<h2>
+📊 Technical Analysis
+</h2>
+
+
+
+<div class="grid">
+
+
+<div class="box">
+
+<small>
+Total Frame
+</small>
+
+<strong>
+{{data.analysis.total_frame}}
+</strong>
+
+</div>
+
+
+
+<div class="box">
+
+<small>
+Frame Analysed
+</small>
+
+<strong>
+{{data.analysis.frame_dianalisis}}
+</strong>
+
+</div>
+
+
+
+<div class="box">
+
+<small>
+FPS
+</small>
+
+<strong>
+{{data.analysis.fps}}
+</strong>
+
+</div>
+
+
+
+<div class="box">
+
+<small>
+Pixel Variance
+</small>
+
+<strong>
+{{data.analysis.pixel_variance}}
+</strong>
+
+</div>
+
+
+
+<div class="box">
+
+<small>
+Brightness
+</small>
+
+<strong>
+{{data.analysis.brightness}}
+</strong>
+
+</div>
+
+
+
+<div class="box">
+
+<small>
+Blur Score
+</small>
+
+<strong>
+{{data.analysis.blur_score}}
+</strong>
+
+</div>
+
+
+
+<div class="box">
+
+<small>
+Edge Density
+</small>
+
+<strong>
+{{data.analysis.edge_density}}%
+</strong>
+
+</div>
+
+
+
+<div class="box">
+
+<small>
+Frame Difference
+</small>
+
+<strong>
+{{data.analysis.frame_difference}}
+</strong>
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<!-- FORENSIC -->
+
+
+<div class="card">
+
+
+<h2>
+🕵️ Forensic Result
+</h2>
+
+
+
+<div class="anomaly">
+
+
+<h1>
+
+{{data.analysis.anomaly_score}}
+
+<span>
+/100
+</span>
+
+</h1>
+
+
+<p>
+
+Visual anomaly score.
+Nilai ini bukan probabilitas deepfake.
+
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+
+<h2>
+📝 Interpretation
+</h2>
+
+
+<p>
+
+Sistem melakukan analisis metadata,
+karakteristik frame video,
+serta klasifikasi menggunakan
+model CNN untuk menentukan
+kemungkinan REAL atau DEEPFAKE.
+
+</p>
+
+
+
+<p>
+
+Hasil akhir tetap membutuhkan
+evaluasi model menggunakan
+akurasi, precision, recall,
+dan F1-score.
+
+</p>
+
+
+</div>
+
+
+
+
+
+<a href="/" class="button">
+
+Analyze New File
+
+</a>
+
+
+
+
+</div>
+
+
+</body>
+
+</html>

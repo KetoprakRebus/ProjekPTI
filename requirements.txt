@@ -1,0 +1,9 @@
+flask
+opencv-python
+numpy
+pymediainfo
+librosa
+soundfile
+torch
+torchvision
+pillow
