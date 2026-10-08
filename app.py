@@ -235,13 +235,11 @@ def analyze():
     # HASIL
     # =========================
 
-    return render_template(
-        "result.html",
-
-        filename=original_filename,
-
-        data=result
-    )
+    from flask import jsonify
+    return jsonify({
+        "filename": original_filename,
+        "data": result
+    })
 
 
 # =========================
