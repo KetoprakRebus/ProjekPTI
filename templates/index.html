@@ -97,8 +97,38 @@ body[data-s=report] #gl{pointer-events:auto;cursor:grab}
 .modal.open{opacity:1;visibility:visible}
 .modal .card{max-width:440px;width:calc(100% - 32px);padding:24px;background:#FFFFFF;box-shadow:0 10px 30px rgba(0,0,0,.08)}
 .modal ol{padding-left:18px;color:var(--t2);margin:14px 0 20px}.modal li{margin:8px 0}
-@media(max-width:900px){#screen-report{grid-template-columns:1fr;grid-template-rows:36% 1fr}#rep-r{order:-1}#slot-report{inset:8px 8px 48px 8px}.rctl{bottom:12px}.hide-sm{display:none}#rep-l{padding:20px}.mrow{grid-template-columns:1fr}}
-@media(max-width:560px){#screen-upload{padding-left:72px}.mode{padding:0 8px}}
+@media (max-width: 900px) {
+#screen-report {
+    grid-template-columns: 1fr;
+    grid-template-rows: 36% 1fr;
+}
+#rep-r {
+    order: -1;
+}
+#slot-report {
+    inset: 8px 8px 48px 8px;
+}
+.rctl {
+    bottom: 12px;
+}
+.hide-sm {
+    display: none;
+}
+#rep-l {
+    padding: 20px;
+}
+.mrow {
+    grid-template-columns: 1fr;
+}
+}
+@media (max-width: 560px) {
+#screen-upload {
+    padding-left: 72px;
+}
+.mode {
+    padding: 0 8px;
+}
+}
 </style>
 </head>
 <body data-s="upload">
@@ -119,7 +149,7 @@ body[data-s=report] #gl{pointer-events:auto;cursor:grab}
 
 <section id="screen-upload" class="scr">
  <div id="slot-upload" class="slot" style="width:220px;height:220px"></div>
- <div class="hd greet">Apa yang ingin Anda verifikasi hari ini, Rifki?</div>
+ <div class="hd greet">Apa yang ingin Anda verifikasi hari ini, Kawan?</div>
  <p class="sub">Deteksi rekayasa deepfake, manipulasi gelombang suara, dan keaslian metadata secara instan.</p>
  <div class="bar" id="bar">
   <div class="pop" id="pop"></div>
