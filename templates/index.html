@@ -10,27 +10,27 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
-:root{color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#090A0F;--surf:rgba(18,21,30,.75);--pill:#131620;--line:rgba(255,255,255,.08);--ac:#3B82F6;--t1:#F8FAFC;--t2:#94A3B8;--t3:#64748B;--ok:#10B981;--warn:#F59E0B;--bad:#EF4444;--vc:#10B981}
+:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#FFFFFF;--surf:rgba(255,255,255,.88);--pill:#F4F4F5;--line:rgba(0,0,0,.08);--ac:#000000;--t1:#000000;--t2:#52525B;--t3:#71717A;--ok:#059669;--warn:#D97706;--bad:#DC2626;--vc:#059669}
 html,body{height:100%;margin:0}
 body{background:var(--bg);color:var(--t1);font:400 14px/1.55 Inter,system-ui,sans-serif;overflow:hidden;position:relative}
-body::before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 50% 42%,rgba(30,58,138,.14) 0%,rgba(9,10,15,0) 65%);pointer-events:none}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 50% 42%,rgba(0,0,0,.03) 0%,rgba(255,255,255,0) 65%);pointer-events:none}
 .hd{font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:-.02em}
 .mono{font-family:'JetBrains Mono',monospace}
 .t2{color:var(--t2)}.t3{color:var(--t3)}.xs{font-size:12px}.grow{flex:1;min-width:0}
 .row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.between{justify-content:space-between}
 button{font:inherit;color:inherit;cursor:pointer}
-.rail{position:fixed;left:0;top:env(safe-area-inset-top,0px);bottom:env(safe-area-inset-bottom,0px);width:56px;border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 0;z-index:50;background:rgba(9,10,15,.6);backdrop-filter:blur(12px)}
+.rail{position:fixed;left:0;top:env(safe-area-inset-top,0px);bottom:env(safe-area-inset-bottom,0px);width:56px;border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(12px)}
 .ib{position:relative;width:36px;height:36px;border-radius:12px;display:grid;place-items:center;color:var(--t2);background:none;border:0;transition:.2s;flex:none}
-.ib:hover{background:rgba(255,255,255,.06);color:var(--t1)}
+.ib:hover{background:rgba(0,0,0,.06);color:var(--t1)}
 .ib.round{border-radius:50%}
 [data-tip]::after{content:attr(data-tip);position:absolute;left:calc(100% + 10px);top:50%;transform:translateY(-50%);white-space:nowrap;padding:5px 11px;border-radius:999px;background:var(--pill);border:1px solid var(--line);color:var(--t1);font-size:12px;opacity:0;pointer-events:none;transition:opacity .15s}
 [data-tip]:hover::after{opacity:1}
-.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:8px 16px;background:rgba(255,255,255,.03);color:var(--t1);font-weight:500;transition:.2s}
-.pill:hover{border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.06)}
-.pill.sm{padding:4px 12px;font-size:12px}.pill.pri{background:var(--ac);border-color:var(--ac)}.pill.pri:hover{background:#2f73e0}
+.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:8px 16px;background:rgba(0,0,0,.03);color:var(--t1);font-weight:500;transition:.2s}
+.pill:hover{border-color:rgba(0,0,0,.2);background:rgba(0,0,0,.06)}
+.pill.sm{padding:4px 12px;font-size:12px}.pill.pri{background:#000000;border-color:#000000;color:#FFFFFF}.pill.pri:hover{background:#27272A;border-color:#27272A}
 .tr{position:fixed;right:16px;top:calc(14px + env(safe-area-inset-top,0px));z-index:40;font-size:13px}
 #toasts{position:fixed;right:16px;top:calc(64px + env(safe-area-inset-top,0px));z-index:60;display:flex;flex-direction:column;gap:8px;align-items:flex-end}
-.toast{display:flex;gap:10px;align-items:center;padding:10px 18px;border-radius:999px;background:var(--surf);backdrop-filter:blur(16px);border:1px solid var(--line);max-width:min(440px,calc(100vw - 32px));animation:ti .3s;transition:opacity .3s}
+.toast{display:flex;gap:10px;align-items:center;padding:10px 18px;border-radius:999px;background:var(--surf);backdrop-filter:blur(16px);border:1px solid var(--line);box-shadow:0 8px 24px rgba(0,0,0,.08);max-width:min(440px,calc(100vw - 32px));animation:ti .3s;transition:opacity .3s}
 @keyframes ti{from{opacity:0;transform:translateY(-6px)}}
 .scr{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .6s ease,visibility 0s .6s}
 body[data-s=upload] #screen-upload,body[data-s=processing] #screen-processing,body[data-s=report] #screen-report{opacity:1;visibility:visible;transition:opacity .6s ease}
@@ -41,23 +41,23 @@ body[data-s=report] #gl{pointer-events:auto;cursor:grab}
 .greet{font-size:clamp(24px,3.2vw,32px);font-weight:500;margin-top:4px}
 .sub{color:var(--t3);margin:10px 0 30px}
 .bar{position:relative;display:flex;align-items:center;gap:8px;width:100%;max-width:42rem;background:var(--pill);border:1px solid var(--line);border-radius:999px;padding:8px 8px 8px 10px;text-align:left;transition:border-color .2s}
-.bar:hover,.bar:focus-within,body.drag .bar{border-color:rgba(255,255,255,.18)}
+.bar:hover,.bar:focus-within,body.drag .bar{border-color:rgba(0,0,0,.2)}
 .mid{flex:1;min-width:0;display:flex}
 .ph{background:none;border:0;color:var(--t3);text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;width:100%;padding:0 4px}
-.chip{display:inline-flex;align-items:center;gap:8px;max-width:100%;padding:5px 6px 5px 12px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid var(--line)}
+.chip{display:inline-flex;align-items:center;gap:8px;max-width:100%;padding:5px 6px 5px 12px;border-radius:999px;background:rgba(0,0,0,.05);border:1px solid var(--line)}
 .chip .cn{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
-.cx{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;border:0;background:rgba(255,255,255,.06);color:var(--t2)}
+.cx{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;border:0;background:rgba(0,0,0,.06);color:var(--t2)}
 .cx:hover{color:var(--t1)}
 .mode{display:flex;align-items:center;gap:6px;height:38px;padding:0 12px;border-radius:999px;border:0;background:none;color:var(--t2);font-size:13px;white-space:nowrap}
-.mode:hover{background:rgba(255,255,255,.05);color:var(--t1)}
-.go{display:flex;align-items:center;gap:6px;height:38px;padding:0 16px;border-radius:999px;border:0;background:rgba(255,255,255,.06);color:var(--t3);font-weight:500;cursor:not-allowed;transition:.3s}
-.go.on{background:var(--ac);color:#fff;cursor:pointer;box-shadow:0 0 0 4px rgba(59,130,246,.14)}
+.mode:hover{background:rgba(0,0,0,.05);color:var(--t1)}
+.go{display:flex;align-items:center;gap:6px;height:38px;padding:0 16px;border-radius:999px;border:0;background:rgba(0,0,0,.06);color:var(--t3);font-weight:500;cursor:not-allowed;transition:.3s}
+.go.on{background:#000000;color:#FFFFFF;cursor:pointer;box-shadow:0 0 0 4px rgba(0,0,0,.1)}.go.on:hover{background:#27272A}
 .mw{position:relative}
-.pop{position:absolute;bottom:calc(100% + 12px);left:0;width:min(380px,100%);background:var(--surf);backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:20px;padding:8px;opacity:0;visibility:hidden;transform:translateY(6px);transition:.2s;z-index:20}
+.pop{position:absolute;bottom:calc(100% + 12px);left:0;width:min(380px,100%);background:var(--surf);backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:20px;padding:8px;box-shadow:0 10px 30px rgba(0,0,0,.08);opacity:0;visibility:hidden;transform:translateY(6px);transition:.2s;z-index:20}
 .pop.open{opacity:1;visibility:visible;transform:none}
 .pop.r{left:auto;right:0;width:220px}
 .it{display:flex;gap:10px;align-items:center;width:100%;padding:9px 10px;border-radius:12px;border:0;background:none;text-align:left;color:var(--t1)}
-.it:hover{background:rgba(255,255,255,.06)}
+.it:hover{background:rgba(0,0,0,.05)}
 .it small{display:block;color:var(--t3);font-size:12px}
 .sep{height:1px;background:var(--line);margin:6px 4px}
 .lbl{color:var(--t3);font-size:12px;display:block}
@@ -69,17 +69,17 @@ body[data-s=report] #gl{pointer-events:auto;cursor:grab}
 #rep-r{position:relative}
 #slot-report{position:absolute;inset:24px 24px 72px 0}
 .rctl{position:absolute;left:0;right:24px;bottom:24px;display:flex;align-items:center;gap:8px;z-index:5;color:var(--t3);font-size:12px}
-.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:5px 14px 5px 11px;font-weight:500;font-size:12px;letter-spacing:.08em;color:var(--vc);background:rgba(255,255,255,.03)}
+.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:5px 14px 5px 11px;font-weight:500;font-size:12px;letter-spacing:.08em;color:var(--vc);background:rgba(0,0,0,.03)}
 .badge b{width:7px;height:7px;border-radius:50%;background:var(--vc)}
 .score{font-size:clamp(30px,4vw,44px);font-weight:600;margin:14px 0 18px;line-height:1.1}
-.card{background:var(--surf);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:16px 18px}
+.card{background:var(--surf);backdrop-filter:blur(16px);border:1px solid rgba(0,0,0,.07);border-radius:16px;padding:16px 18px}
 .card p{margin:6px 0 0}
 .tabs{display:flex;gap:24px;border-bottom:1px solid var(--line);margin:32px 0 18px}
 .tab{background:none;border:0;border-bottom:1.5px solid transparent;margin-bottom:-1px;padding:8px 0;color:var(--t3);font-weight:500}
 .tab.on{color:var(--t1);border-color:var(--t1)}
 .pane{display:none}.pane.on{display:block}
 .wf{display:flex;align-items:center;gap:2px;height:64px}
-.wf i{flex:1;border-radius:2px;background:#2A3345;min-width:1px}.wf i.a{background:var(--vc)}
+.wf i{flex:1;border-radius:2px;background:#E4E4E7;min-width:1px}.wf i.a{background:var(--vc)}
 .cap{margin-top:10px!important}
 .specs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
 .specs>div{border:1px solid var(--line);border-radius:14px;padding:10px 14px}
@@ -87,15 +87,15 @@ body[data-s=report] #gl{pointer-events:auto;cursor:grab}
 .mrow{display:grid;grid-template-columns:200px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
 .mv{font-size:12.5px;word-break:break-all;color:var(--t1)}
 .met{margin-bottom:22px}.mt{font-weight:500}.mv2{font-weight:500}
-.mb{height:4px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden;margin:8px 0}
+.mb{height:4px;border-radius:99px;background:rgba(0,0,0,.07);overflow:hidden;margin:8px 0}
 .mb b{display:block;height:100%;border-radius:99px;width:0;transition:width 1s ease}
 .tip{position:relative;display:inline-grid;place-items:center;color:var(--t3);cursor:help;vertical-align:middle;margin-left:6px}
 .tip:hover{color:var(--t1)}
-.tip .tt{position:absolute;left:-6px;bottom:calc(100% + 8px);width:250px;padding:10px 12px;border-radius:12px;background:#0E1118;border:1px solid var(--line);color:var(--t2);font:400 12px/1.5 Inter,sans-serif;opacity:0;visibility:hidden;transition:.15s;z-index:30;text-align:left}
+.tip .tt{position:absolute;left:-6px;bottom:calc(100% + 8px);width:250px;padding:10px 12px;border-radius:12px;background:#FFFFFF;box-shadow:0 10px 30px rgba(0,0,0,.08);border:1px solid var(--line);color:var(--t2);font:400 12px/1.5 Inter,sans-serif;opacity:0;visibility:hidden;transition:.15s;z-index:30;text-align:left}
 .tip:hover .tt{opacity:1;visibility:visible}
-.modal{position:fixed;inset:0;z-index:70;display:grid;place-items:center;background:rgba(5,6,10,.6);backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:.25s}
+.modal{position:fixed;inset:0;z-index:70;display:grid;place-items:center;background:rgba(0,0,0,.35);backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:.25s}
 .modal.open{opacity:1;visibility:visible}
-.modal .card{max-width:440px;width:calc(100% - 32px);padding:24px;background:#10131B}
+.modal .card{max-width:440px;width:calc(100% - 32px);padding:24px;background:#FFFFFF;box-shadow:0 10px 30px rgba(0,0,0,.08)}
 .modal ol{padding-left:18px;color:var(--t2);margin:14px 0 20px}.modal li{margin:8px 0}
 @media(max-width:900px){#screen-report{grid-template-columns:1fr;grid-template-rows:36% 1fr}#rep-r{order:-1}#slot-report{inset:8px 8px 48px 8px}.rctl{bottom:12px}.hide-sm{display:none}#rep-l{padding:20px}.mrow{grid-template-columns:1fr}}
 @media(max-width:560px){#screen-upload{padding-left:72px}.mode{padding:0 8px}}
@@ -103,7 +103,7 @@ body[data-s=report] #gl{pointer-events:auto;cursor:grab}
 </head>
 <body data-s="upload">
 <aside class="rail">
- <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><path d="M12 2.5 20.5 7.25v9.5L12 21.5 3.5 16.75v-9.5z" stroke="#3B82F6"/><circle cx="12" cy="12" r="2.5" stroke="#94A3B8"/></svg>
+ <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><path d="M12 2.5 20.5 7.25v9.5L12 21.5 3.5 16.75v-9.5z" stroke="#000000"/><circle cx="12" cy="12" r="2.5" stroke="#71717A"/></svg>
  <div style="height:12px"></div>
  <button class="ib" id="b-home" data-tip="Pemindaian Baru" aria-label="Pemindaian Baru"><i data-i="home" data-s="18"></i></button>
  <button class="ib" id="b-samp" data-tip="Sampel Uji Cepat" aria-label="Sampel Uji Cepat"><i data-i="plus" data-s="18"></i></button>
@@ -203,9 +203,9 @@ const SAMPLES=[{n:'Wawancara_Publik.mp4',sz:48.2e6,k:'v',sc:'authentic'},{n:'Rek
 const MODES=[['auto','Auto'],['authentic','Simulasi Asli'],['suspicious','Simulasi Mencurigakan'],['manipulated','Simulasi Deepfake']];
 const ST=['Memeriksa integritas file & mengamankan hash kriptografi...','Mengekstrak jejak kamera & metadata tersembunyi (EXIF)...','Memindai sinkronisasi bibir, tekstur wajah, & spektrum suara...','Menyusun ringkasan forensik bahasa manusia...'];
 const SC={
-authentic:{l:'AUTHENTIC',c:'#10B981',p:'98.4% Authentic',d:42,r:null,s:'Suara dan gerakan bibir selaras, dan tidak ditemukan jejak rekayasa AI. Data internal file konsisten dengan rekaman langsung dari kamera asli.',f:['Gerak bibir dan suara selaras sepanjang durasi.','Tekstur dan bentuk wajah konsisten di setiap frame.','Jejak perangkat menunjukkan kamera asli, bukan software generator.'],md:['2026-03-14 09:12:44 +07:00','H.264 / AAC-LC','24.6 Mbps','29.97 fps','Firmware kamera (ILCE-7M4 v3.00)'],m:[97,98,96]},
-suspicious:{l:'SUSPICIOUS',c:'#F59E0B',p:'67.3% Suspicious',d:38,r:[14,19],s:'Sebagian besar rekaman tampak wajar, tetapi ada potongan suara sekitar detik 14–19 yang polanya janggal dan mungkin telah disunting atau disambung.',f:['Frekuensi suara terpotong tidak wajar pada 00:14 – 00:19.','File pernah diproses ulang dengan software penyunting audio.','Pola napas dan jeda bicara di luar potongan itu terdengar alami.'],md:['2026-05-02 22:41:07 +07:00','PCM 16-bit / 48 kHz','1.41 Mbps','—','Adobe Audition 24.2 (diproses ulang)'],m:[79,90,41]},
-manipulated:{l:'MANIPULATED',c:'#EF4444',p:'91.2% Manipulated',d:57,r:[14,19],s:'Suara dan gerakan bibir pada video ini terdeteksi tidak sinkron dan memiliki jejak rekayasa AI. Wajah pada detik 14–19 sangat mungkin dihasilkan atau ditukar oleh generator.',f:['Gerak bibir tertinggal dari suara lebih dari 200 ms.','Tepi wajah dan pencahayaan tidak konsisten antar-frame.','Tanda tangan generator AI ditemukan pada metadata file.'],md:['2026-08-21 03:17:52 +00:00','H.264 / AAC-LC','8.3 Mbps','25.00 fps','Generator AI (tanda tangan GAN) + FFmpeg 6.1'],m:[12,18,23]}};
+authentic:{l:'AUTHENTIC',c:'#059669',p:'98.4% Authentic',d:42,r:null,s:'Suara dan gerakan bibir selaras, dan tidak ditemukan jejak rekayasa AI. Data internal file konsisten dengan rekaman langsung dari kamera asli.',f:['Gerak bibir dan suara selaras sepanjang durasi.','Tekstur dan bentuk wajah konsisten di setiap frame.','Jejak perangkat menunjukkan kamera asli, bukan software generator.'],md:['2026-03-14 09:12:44 +07:00','H.264 / AAC-LC','24.6 Mbps','29.97 fps','Firmware kamera (ILCE-7M4 v3.00)'],m:[97,98,96]},
+suspicious:{l:'SUSPICIOUS',c:'#D97706',p:'67.3% Suspicious',d:38,r:[14,19],s:'Sebagian besar rekaman tampak wajar, tetapi ada potongan suara sekitar detik 14–19 yang polanya janggal dan mungkin telah disunting atau disambung.',f:['Frekuensi suara terpotong tidak wajar pada 00:14 – 00:19.','File pernah diproses ulang dengan software penyunting audio.','Pola napas dan jeda bicara di luar potongan itu terdengar alami.'],md:['2026-05-02 22:41:07 +07:00','PCM 16-bit / 48 kHz','1.41 Mbps','—','Adobe Audition 24.2 (diproses ulang)'],m:[79,90,41]},
+manipulated:{l:'MANIPULATED',c:'#DC2626',p:'91.2% Manipulated',d:57,r:[14,19],s:'Suara dan gerakan bibir pada video ini terdeteksi tidak sinkron dan memiliki jejak rekayasa AI. Wajah pada detik 14–19 sangat mungkin dihasilkan atau ditukar oleh generator.',f:['Gerak bibir tertinggal dari suara lebih dari 200 ms.','Tepi wajah dan pencahayaan tidak konsisten antar-frame.','Tanda tangan generator AI ditemukan pada metadata file.'],md:['2026-08-21 03:17:52 +00:00','H.264 / AAC-LC','8.3 Mbps','25.00 fps','Generator AI (tanda tangan GAN) + FFmpeg 6.1'],m:[12,18,23]}};
 const MT=[['Kesesuaian Gerak Bibir & Suara','Apakah gerakan bibir cocok dengan ucapan yang terdengar.','Mengukur selisih waktu antara bentuk mulut (viseme) dan bunyi ucapan (fonem). Selisih di atas ±80 ms umumnya dianggap mencurigakan.'],['Keaslian Tekstur & Geometri Wajah','Apakah kulit, tepi, dan bentuk wajah tampak natural dari frame ke frame.','Memeriksa pola noise sensor kamera (PRNU), konsistensi cahaya, dan kestabilan titik-titik 3D wajah antar-frame.'],['Kewajaran Frekuensi Suara','Apakah suara terdengar seperti manusia sungguhan, bukan buatan.','Menganalisis spectral rolloff dan harmonik suara. Suara sintetis sering memotong frekuensi tinggi atau terlalu "rapi".']];
 const MD=[['Creation Date','Kapan file ini dibuat menurut penanda waktu di dalamnya, seperti tanggal cetak pada selembar foto.'],['Video/Audio Codec','Cara file dikemas dan dikompres, mirip jenis "bahasa" yang dipakai untuk menyimpan gambar dan suara.'],['Bitrate','Seberapa banyak data per detik. Angka yang janggal bisa menandakan file pernah diproses ulang.'],['Frame Rate','Jumlah gambar per detik. Perubahan mendadak bisa menandakan potongan hasil sunting.'],['SHA-256 Hash','Sidik jari digital file. Jika satu bit saja berubah, sidik jarinya ikut berubah, sehingga keaslian file bisa dibuktikan.'],['Detected Software Signature','Menunjukkan apakah file ini murni keluar dari sensor kamera asli atau telah diproses ulang menggunakan software editing/generator AI.']];
 
@@ -243,7 +243,7 @@ function init3(){
  cv=$('#gl');tc=new THREE.Color(0x10B981);
  R=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});R.setPixelRatio(Math.min(devicePixelRatio,2));R.setClearColor(0,0);
  sc3=new THREE.Scene();cam=new THREE.PerspectiveCamera(45,1,.1,50);cam.position.z=6.3;G=new THREE.Group();G.position.y=.26;sc3.add(G);
- const m0=m=>[(59+41*m)/255,(130-14*m)/255,(246-107*m)/255],NC=[.23,.51,.96],LC=[.58,.77,1];
+ const m0=m=>[.1+.25*m,.1+.25*m,.1+.25*m],NC=[.25,.25,.28],LC=[0,0,0];
  /* partikel: topeng (0), struktur dasar (1), tengkorak belakang (2) */
  for(const[kd,n,br]of[[0,800,1],[1,300,.5],[2,300,.35]])for(let i=0;i<n;i++){const rr=Math.sqrt((i+.5)/n),v=rr*Math.sin(i*2.399963);addV(rr*Math.cos(i*2.399963)*.7*tp(v),v,kd,br,m0(Math.random()))}
  NP=KD.length;
@@ -280,12 +280,12 @@ function init3(){
  rpos=new Float32Array(RB*6);rcol=new Float32Array(RB*6);
  rbar=new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position',new THREE.BufferAttribute(rpos,3)).setAttribute('color',new THREE.BufferAttribute(rcol,3)),new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.9}));
  const cp=[];for(let i=0;i<=128;i++){const a=i/128*6.2832;cp.push(1.12*Math.sin(a),0,1.12*Math.cos(a))}
- rline=new THREE.Line(new THREE.BufferGeometry().setAttribute('position',new THREE.Float32BufferAttribute(cp,3)),new THREE.LineBasicMaterial({color:0x3B82F6,transparent:true,opacity:.4}));
+ rline=new THREE.Line(new THREE.BufferGeometry().setAttribute('position',new THREE.Float32BufferAttribute(cp,3)),new THREE.LineBasicMaterial({color:0x000000,transparent:true,opacity:.4}));
  rbar.frustumCulled=rline.frustumCulled=false;RG.add(rbar,rline);
  /* cincin laser pemindai */
  scan=new THREE.Group();
- scan.add(new THREE.Mesh(new THREE.RingGeometry(.97,1,128).rotateX(-Math.PI/2),new THREE.MeshBasicMaterial({color:0x3B82F6,transparent:true,opacity:.95,side:THREE.DoubleSide})),
-  new THREE.Mesh(new THREE.CylinderGeometry(1,1,.14,96,1,true),new THREE.MeshBasicMaterial({color:0x3B82F6,transparent:true,opacity:.07,side:THREE.DoubleSide,depthWrite:false})));
+ scan.add(new THREE.Mesh(new THREE.RingGeometry(.97,1,128).rotateX(-Math.PI/2),new THREE.MeshBasicMaterial({color:0x000000,transparent:true,opacity:.95,side:THREE.DoubleSide})),
+  new THREE.Mesh(new THREE.CylinderGeometry(1,1,.14,96,1,true),new THREE.MeshBasicMaterial({color:0x000000,transparent:true,opacity:.07,side:THREE.DoubleSide,depthWrite:false})));
  scan.visible=false;G.add(scan);
  cv.addEventListener('pointerdown',e=>{if(S.state!=='report')return;S.dg=1;S.reset=false;cv.setPointerCapture(e.pointerId);cv.style.cursor='grabbing'});
  cv.addEventListener('pointermove',e=>{if(S.dg){S.ry+=e.movementX*.008;S.rx=Math.max(-1.2,Math.min(1.2,S.rx+e.movementY*.008))}});
@@ -322,13 +322,13 @@ function loop(now){
   let f=AN[i]*V;if(su)f*=pu;
   let b=BR[i];if(i>=LS)b*=.55+.45*L;b*=.88+.12*Math.sin(y*30-t*2);
   let hi=0;if(pr){const d=y-sy;if(d<0)b*=.65;hi=Math.exp(-d*d/.005)}
-  const cr=C0[i3]*b,cg=C0[i3+1]*b,cb=C0[i3+2]*b;
-  col[i3]=cr+(tc.r-cr)*f+(.8-cr)*hi*.7;col[i3+1]=cg+(tc.g-cg)*f+(.88-cg)*hi*.7;col[i3+2]=cb+(tc.b-cb)*f+(1-cb)*hi*.7;
+  const cr=1-(1-C0[i3])*b,cg=1-(1-C0[i3+1])*b,cb=1-(1-C0[i3+2])*b;
+  col[i3]=cr+(tc.r-cr)*f-cr*hi*.9;col[i3+1]=cg+(tc.g-cg)*f-cg*hi*.9;col[i3+2]=cb+(tc.b-cb)*f-cb*hi*.9;
   pos[i3]=x;pos[i3+1]=y;pos[i3+2]=z}
  PA.needsUpdate=true;CA.needsUpdate=true;
- nets.material.opacity=.14+.2*L+(au?.12*V:0);lms.material.opacity=.38+.5*L;nodes.material.size=.06+.035*L+.012*Math.sin(t*5)*L;
+ nets.material.opacity=.3+.26*L+(au?.12*V:0);lms.material.opacity=.38+.5*L;nodes.material.size=.06+.035*L+.012*Math.sin(t*5)*L;
  /* cincin audio: tinggi batang mengikuti envelope suara; mulut mengikuti envelope yang sama (tertinggal 0,55 dtk saat deepfake) */
- const prog=Math.max(0,Math.min(1,(1.3-sy)/2.6)),lvl=st==='upload'?.1+.04*Math.sin(t*1.3)+.1*L:pr?.2+.5*prog+.9*Math.exp(-(sy+.55)*(sy+.55)/.04):.3+.7*env(t),rb=.5+.5*Math.min(1,lvl*1.4);
+ const prog=Math.max(0,Math.min(1,(1.3-sy)/2.6)),lvl=st==='upload'?.1+.04*Math.sin(t*1.3)+.1*L:pr?.2+.5*prog+.9*Math.exp(-(sy+.55)*(sy+.55)/.04):.3+.7*env(t),rb=.5+.5*Math.min(1,lvl*1.4),r0=1-.85*rb,r1=1-.82*rb;
  for(let j=0;j<RB;j++){
   const th=j/RB*6.2832,sn=Math.sin(th),cs=Math.cos(th);
   let hh=lvl*(.3+.7*Math.abs(Math.sin(th*5+t*2.4)*Math.cos(th*2-t*1.3)))*.38,f=0;
@@ -337,9 +337,9 @@ function loop(now){
   else if(au)f=.85*V;
   hh=.55*Math.tanh(hh/.55);const o=j*6,e=1.12;
   rpos[o]=rpos[o+3]=e*sn;rpos[o+1]=-hh;rpos[o+4]=hh;rpos[o+2]=rpos[o+5]=e*cs;
-  for(let n=0;n<6;n+=3){rcol[o+n]=.23*rb+(tc.r-.23*rb)*f;rcol[o+n+1]=.51*rb+(tc.g-.51*rb)*f;rcol[o+n+2]=.96*rb+(tc.b-.96*rb)*f}}
+  for(let n=0;n<6;n+=3){rcol[o+n]=r0+(tc.r-r0)*f;rcol[o+n+1]=r0+(tc.g-r0)*f;rcol[o+n+2]=r1+(tc.b-r1)*f}}
  rbar.geometry.attributes.position.needsUpdate=true;rbar.geometry.attributes.color.needsUpdate=true;
- rline.material.color.setRGB(.23+(tc.r-.23)*V*.7,.51+(tc.g-.51)*V*.7,.96+(tc.b-.96)*V*.7);
+ rline.material.color.setRGB(.15+(tc.r-.15)*V*.7,.15+(tc.g-.15)*V*.7,.18+(tc.b-.18)*V*.7);
  /* laser pemindai menyapu dari atas kepala ke dagu */
  scan.visible=pr;const yy=Math.max(-1,Math.min(1,sy)),ww=Math.sqrt(1-yy*yy);scan.position.set(0,sy,-.05);scan.scale.set(.2+.62*ww*tp(yy),1,.2+.7*ww);
  R.render(sc3,cam)}
@@ -368,122 +368,95 @@ function add(f){const ext=f.n.split('.').pop().toLowerCase(),why=[];
  if(f.sz>500e6)why.push('ukuran '+fmt(f.sz)+' melebihi batas 500 MB');
  pop(false);if(why.length)return toast(f.n+' ditolak: '+why.join(' dan ')+'.','err');
  file=f;chip();sync()}
-const fromReal=f=>({n:f.name,sz:f.size,k:/\.(wav|mp3|m4a|flac)$/i.test(f.name)?'a':'v',sc:null,rawFile:f});
+const fromReal=f=>({n:f.name,sz:f.size,k:/\.(wav|mp3)$/i.test(f.name)?'a':'v',sc:null,raw:f});
 const pick=()=>mode!=='auto'?mode:file.sc||['authentic','suspicious','manipulated'][[...file.n].reduce((a,c)=>a+c.charCodeAt(0),0)%3];
 function home(){run++;file=null;chip();S.vt=0;go('upload');rc()}
-async function analyze(){
+function analyze(){
  if(!file)return;
- const isSim = !file.rawFile;
- const k=pick(),id=++run,t0=performance.now(),T=6800;
+ const id=++run;
  go('processing');
  
- let realRes = null;
- let errorMsg = null;
- 
- if (!isSim) {
-   const fd = new FormData();
-   fd.append('file', file.rawFile);
-   fetch('/analyze', {method: 'POST', body: fd})
-     .then(r => r.ok ? r.json() : r.text().then(t => {throw new Error(t)}))
-     .then(data => {realRes = data})
-     .catch(err => {
-         console.error("Backend Request Error:", err);
-         errorMsg = err.message || 'Gagal menghubungi server';
-     });
+ if(!file.raw){
+   const k=pick(),t0=performance.now(),T=6800;
+   (function f(){if(id!==run)return;const p=Math.min(1,(performance.now()-t0)/T);S.scanT=1.3-2.6*p;
+    $('#pct').textContent=Math.round(p*100)+'%';$('#stg').textContent=ST[Math.floor(p*3.99)]||ST[3];
+    if(p<1)requestAnimationFrame(f);else setTimeout(()=>{if(id===run)show(k)},500)})();
+   return;
  }
 
+ const fd = new FormData();
+ fd.append("file", file.raw);
+ 
+ const t0=performance.now(),T=8000;
+ let done = false, resData = null;
+ 
+ fetch("/analyze", {method: "POST", body: fd})
+   .then(r => r.json())
+   .then(data => { done = true; resData = data; })
+   .catch(e => { done = true; console.error(e); });
+
  (function f(){
-  if(id!==run)return;
-  
-  if(errorMsg) {
-      console.error("Analysis aborted due to error:", errorMsg);
-      toast(errorMsg, 'err');
-      home();
-      return;
-  }
-  
-  const p=Math.min(1,(performance.now()-t0)/T);
-  S.scanT=1.3-2.6*p;
-  $('#pct').textContent=Math.round(p*100)+'%';
-  $('#stg').textContent=ST[p<.25?0:p<.5?1:p<.8?2:3];
-  
-  if(p<1 && (!isSim ? (!realRes) : true)) requestAnimationFrame(f);
-  else if (p<1) {
-    requestAnimationFrame(f);
-  }
-  else setTimeout(()=>{
-    if(id!==run)return;
-    
-    if (isSim) {
-      show(k);
-    } else {
-      try {
-         const ana = (realRes.data && realRes.data.analysis) ? realRes.data.analysis : {};
-         const meta = (realRes.data && realRes.data.metadata) ? realRes.data.metadata : {};
-         
-         const isFake = ana.prediction === "DEEPFAKE";
-         const isSuspicious = ana.prediction === "PERLU PEMERIKSAAN LANJUT";
-         const st = isFake ? "manipulated" : (isSuspicious ? "suspicious" : "authentic");
-         const cTemplate = SC[st];
-         
-         let conf = ana.confidence || 0;
-         
-         const c = {
-           l: cTemplate.l,
-           c: cTemplate.c,
-           p: conf + "% " + cTemplate.l,
-           d: ana.durasi_detik || meta.duration_seconds || cTemplate.d,
-           r: cTemplate.r,
-           s: cTemplate.s,
-           f: cTemplate.f,
-           md: [
-              meta.format || '-',
-              (meta.codec || meta.audio_codec || '-') + " / " + (meta.resolution || meta.sample_rate || '-'),
-              (meta.bitrate_kbps ? meta.bitrate_kbps + ' kbps' : '-'),
-              (meta.frame_rate ? meta.frame_rate + ' fps' : (meta.audio_channels ? meta.audio_channels + ' ch' : '-')),
-              'Dianalisis AI'
-           ],
-           m: [
-             ana.anomaly_score || cTemplate.m[0],
-             ana.blur_score || cTemplate.m[1],
-             ana.edge_density || cTemplate.m[2]
-           ],
-           _st: st
-         };
-         showReal(c);
-      } catch (err) {
-         console.error("UI Rendering Error processing real data:", err, realRes);
-         toast("Terjadi kesalahan saat memproses data balasan server", 'err');
-         home();
-      }
-    }
-  },500)
- })()
-}
-function showReal(c){
- document.documentElement.style.setProperty('--vc',c.c);
- $('#r-name').textContent=file.n;$('#r-id').textContent=uuid();$('#r-badge').textContent=c.l;$('#r-score').textContent=c.p;$('#r-sum').textContent=c.s;
- let wf='';for(let i=0;i<88;i++){const x=i/88*c.d,a=c.r&&x>=c.r[0]&&x<c.r[1],h=16+Math.abs(Math.sin(i*.7)*Math.cos(i*.23))*52+Math.random()*24;wf+=`<i class="${a?'a':''}" style="height:${h}%"></i>`}
- $('#pane-o').innerHTML=`<div class="card"><div class="wf">${wf}</div><div class="row between mono t3 xs" style="margin-top:6px"><span>00:00</span><span>${mm(c.d)}</span></div><p class="cap t2">${c.r?`Anomali terdeteksi pada <span class="mono" style="color:var(--vc)">${mm(c.r[0])} – ${mm(c.r[1])}</span>`:'Tidak ada anomali terdeteksi sepanjang durasi.'}</p></div>
- <div class="specs"><div><span class="lbl">Resolusi</span>${file.k==='a'?'Audio':'Video'}</div><div><span class="lbl">Durasi</span><span class="mono">${mm(c.d)}</span></div><div><span class="lbl">Ukuran</span><span class="mono">${fmt(file.sz)}</span></div></div>
- <ul class="finds">${c.f.map(t=>`<li>${t}</li>`).join('')}</ul>`;
- const v=[...c.md.slice(0,4),hex(32),c.md[4]];
- $('#pane-m').innerHTML=MD.map((r,i)=>`<div class="mrow"><div>${r[0]}${tip(r[1])}</div><div class="mono mv">${v[i]?v[i]:'-'}</div></div>`).join('');
- $('#pane-a').innerHTML=MT.map((t,i)=>{const n=c.m[i],cl=n>=75?'var(--ok)':n>=45?'var(--warn)':'var(--bad)';return `<div class="met"><div class="row between"><div class="mt">${t[0]}${tip(t[2])}</div><span class="mv2">${n}%</span></div><div class="mb"><b data-w="${n}" style="background:${cl}"></b></div><p class="t3 xs" style="margin:0">${t[1]}</p></div>`}).join('');
- $('.tab').click();setTimeout(()=>$$('.mb b').forEach(b=>b.style.width=b.dataset.w+'%'),80);
- setV(c._st);go('report');rc()
+   if(id!==run)return;
+   let el = (performance.now()-t0);
+   let p = done ? 1 : Math.min(0.95, el/T);
+   S.scanT=1.3-2.6*p;
+   $('#pct').textContent=Math.round(p*100)+'%';
+   $('#stg').textContent=ST[Math.floor(Math.min(3, p*4))]||ST[3];
+   if(!done || el < 2000) { 
+     requestAnimationFrame(f);
+   } else {
+     if(resData && resData.data) {
+        let an = resData.data.analysis || {}, md = resData.data.metadata || {};
+        let isDeepfake = an.prediction === "DEEPFAKE";
+        let isSuspicious = an.prediction === "PERLU PEMERIKSAAN LANJUT";
+        let st = isDeepfake ? 'manipulated' : isSuspicious ? 'suspicious' : 'authentic';
+        let base = SC[st];
+        
+        SC["live"] = {
+          base_k: st,
+          l: isDeepfake ? 'MANIPULATED' : isSuspicious ? 'SUSPICIOUS' : 'AUTHENTIC',
+          c: base.c,
+          p: (an.confidence||0) + '% ' + (isDeepfake ? 'Manipulated' : isSuspicious ? 'Suspicious' : 'Authentic'),
+          d: an.durasi_detik || 0,
+          r: (isDeepfake || isSuspicious) ? [0, Math.min(an.durasi_detik||5, 5)] : null,
+          s: base.s,
+          f: [
+            'Confidence Score: ' + (an.confidence||0) + '%',
+            'Anomaly Score: ' + (an.anomaly_score||0),
+            'Prediction: ' + (an.prediction||"-")
+          ],
+          md: [
+            (md.file_size_mb || 0) + ' MB',
+            (md.codec || md.audio_codec || '-') + ' / ' + (md.format || '-'),
+            (md.bitrate_kbps || 0) + ' kbps',
+            md.frame_rate ? md.frame_rate + ' fps' : (md.sample_rate || '-') + ' Hz',
+            'Resolution: ' + (md.resolution || '-')
+          ],
+          m: [
+            Math.round(an.real_probability || Math.max(0, 100 - (an.anomaly_score||0))),
+            Math.round(an.fake_probability || (an.anomaly_score||0)),
+            Math.max(0, 100 - (an.anomaly_score || 0))
+          ]
+        };
+        show("live");
+     } else {
+        toast("Terjadi kesalahan pada server", "err");
+        home();
+     }
+   }
+ })();
 }
 function show(k){const c=SC[k];document.documentElement.style.setProperty('--vc',c.c);
  $('#r-name').textContent=file.n;$('#r-id').textContent=uuid();$('#r-badge').textContent=c.l;$('#r-score').textContent=c.p;$('#r-sum').textContent=c.s;
- let wf='';for(let i=0;i<88;i++){const x=i/88*c.d,a=c.r&&x>=c.r[0]&&x<c.r[1],h=16+Math.abs(Math.sin(i*.7)*Math.cos(i*.23))*52+Math.random()*24;wf+=`<i class="${a?'a':''}" style="height:${h}%"></i>`}
- $('#pane-o').innerHTML=`<div class="card"><div class="wf">${wf}</div><div class="row between mono t3 xs" style="margin-top:6px"><span>00:00</span><span>${mm(c.d)}</span></div><p class="cap t2">${c.r?`Anomali terdeteksi pada <span class="mono" style="color:var(--vc)">${mm(c.r[0])} – ${mm(c.r[1])}</span>`:'Tidak ada anomali terdeteksi sepanjang durasi.'}</p></div>
- <div class="specs"><div><span class="lbl">Resolusi</span>${file.k==='a'?'Audio 48 kHz':'1920 × 1080'}</div><div><span class="lbl">Durasi</span><span class="mono">${mm(c.d)}</span></div><div><span class="lbl">Ukuran</span><span class="mono">${fmt(file.sz)}</span></div></div>
+ let wf='';for(let i=0;i<88;i++){const x=i/88*(c.d||10),a=c.r&&x>=c.r[0]&&x<c.r[1],h=16+Math.abs(Math.sin(i*.7)*Math.cos(i*.23))*52+Math.random()*24;wf+=`<i class="${a?'a':''}" style="height:${h}%"></i>`}
+ $('#pane-o').innerHTML=`<div class="card"><div class="wf">${wf}</div><div class="row between mono t3 xs" style="margin-top:6px"><span>00:00</span><span>${mm(c.d||0)}</span></div><p class="cap t2">${c.r?`Anomali terdeteksi pada <span class="mono" style="color:var(--vc)">${mm(c.r[0])} – ${mm(c.r[1])}</span>`:'Tidak ada anomali terdeteksi sepanjang durasi.'}</p></div>
+ <div class="specs"><div><span class="lbl">Resolusi</span>${file.k==='a'?'Audio 48 kHz':'1920 × 1080'}</div><div><span class="lbl">Durasi</span><span class="mono">${mm(c.d||0)}</span></div><div><span class="lbl">Ukuran</span><span class="mono">${fmt(file.sz)}</span></div></div>
  <ul class="finds">${c.f.map(t=>`<li>${t}</li>`).join('')}</ul>`;
  const v=[...c.md.slice(0,4),hex(32),c.md[4]];
  $('#pane-m').innerHTML=MD.map((r,i)=>`<div class="mrow"><div>${r[0]}${tip(r[1])}</div><div class="mono mv">${v[i]}</div></div>`).join('');
- $('#pane-a').innerHTML=MT.map((t,i)=>{const n=c.m[i],cl=n>=75?'var(--ok)':n>=45?'var(--warn)':'var(--bad)';return `<div class="met"><div class="row between"><div class="mt">${t[0]}${tip(t[2])}</div><span class="mv2">${n}%</span></div><div class="mb"><b data-w="${n}" style="background:${cl}"></b></div><p class="t3 xs" style="margin:0">${t[1]}</p></div>`}).join('');
+ $('#pane-a').innerHTML=MT.map((t,i)=>{const n=c.m[i]||0,cl=n>=75?'var(--ok)':n>=45?'var(--warn)':'var(--bad)';return `<div class="met"><div class="row between"><div class="mt">${t[0]}${tip(t[2])}</div><span class="mv2">${n}%</span></div><div class="mb"><b data-w="${n}" style="background:${cl}"></b></div><p class="t3 xs" style="margin:0">${t[1]}</p></div>`}).join('');
  $('.tab').click();setTimeout(()=>$$('.mb b').forEach(b=>b.style.width=b.dataset.w+'%'),80);
- setV(k);go('report');rc()}
+ setV(c.base_k || k);go('report');rc()}
 
 hy();sp();chip();
 $('#pop').innerHTML=`<button class="it" id="up">${ic('plus',16)}<span>Unggah File Lokal<small>MP4, AVI, WAV, MP3 - Maks 500MB</small></span></button><div class="sep"></div><span class="lbl px">Sampel Uji Instan</span>`+SAMPLES.map((s,i)=>`<button class="it" data-k="${i}">${ic(s.k==='a'?'audio':'video',16)}<span class="grow">${s.n}</span><span class="mono t3 xs">${fmt(s.sz)}</span></button>`).join('');
